@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KernelCraft — The Anti-Generic AI Product Studio</title>
+  <meta name="description" content="Build a working proof-of-concept in an afternoon without cognitive debt using the Flipped Interaction method.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="theme-editorial">
+  <div id="app" class="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="app-header">
+      <div class="header-left">
+        <div class="logo-mark">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+            <polyline points="2 17 12 22 22 17"></polyline>
+            <polyline points="2 12 12 17 22 12"></polyline>
+          </svg>
+        </div>
+        <div>
+          <h1 class="logo-title">KernelCraft</h1>
+          <span class="logo-subtitle">Anti-Generic AI Product Studio</span>
+        </div>
+        <span class="pill-badge">Devpost Learn Edition</span>
+      </div>
+
+      <div class="header-right">
+        <!-- Preset Dropdown -->
+        <div class="preset-selector">
+          <label for="demo-presets">Load Idea:</label>
+          <select id="demo-presets">
+            <option value="">-- Choose Example --</option>
+            <option value="log-analyzer">DebugWhisperer (CLI Log Explainer)</option>
+            <option value="flashcards">MicroRecall (Active Memory Deck)</option>
+            <option value="pitch-deck">OneSlide (Single Metric Pitcher)</option>
+          </select>
+        </div>
+
+        <button id="btn-sound" class="btn-icon" title="Toggle tactile audio clicks">
+          <svg id="icon-sound-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg id="icon-sound-off" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <button id="btn-reset" class="btn-secondary btn-sm">Reset</button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="workspace-grid">
+      <!-- Left Column: The Flipped Interview & Scope Controller -->
+      <section class="panel-left">
+        <!-- Progress Steps Tracker -->
+        <div class="stepper-nav">
+          <button class="step-btn active" data-step="1">
+            <span class="step-num">1</span>
+            <span class="step-label">Kernel</span>
+          </button>
+          <button class="step-btn" data-step="2">
+            <span class="step-num">2</span>
+            <span class="step-label">Interview</span>
+          </button>
+          <button class="step-btn" data-step="3">
+            <span class="step-num">3</span>
+            <span class="step-label">Triage & Debt</span>
+          </button>
+          <button class="step-btn" data-step="4">
+            <span class="step-num">4</span>
+            <span class="step-label">Export</span>
+          </button>
+        </div>
+
+        <!-- Step 1: The Project Kernel -->
+        <div id="step-1" class="step-content active">
+          <div class="step-header">
+            <h2>Step 1: Define the Raw Kernel</h2>
+            <p class="description">Start with one clear concept. Keep it tight — an afternoon proof of concept only does one thing exceptionally well.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="input-project-name">Project Name</label>
+            <input type="text" id="input-project-name" placeholder="e.g. BugSniffer, MicroRecall, DailyDrill" value="SnippetRefine">
+          </div>
+
+          <div class="form-group">
+            <label for="input-project-tagline">One-Sentence Pitch</label>
+            <input type="text" id="input-project-tagline" placeholder="What does it do in one line?" value="Instantly turns convoluted error tracebacks into plain-English root causes with one-click fixes.">
+          </div>
+
+          <div class="form-group">
+            <label>Domain Category</label>
+            <div class="category-pills" id="category-picker">
+              <button type="button" class="pill active" data-category="devtools">DevTools</button>
+              <button type="button" class="pill" data-category="productivity">Productivity</button>
+              <button type="button" class="pill" data-category="education">Learning</button>
+              <button type="button" class="pill" data-category="creator">Creative</button>
+              <button type="button" class="pill" data-category="utility">Utility</button>
+            </div>
+          </div>
+
+          <div class="step-footer">
+            <button class="btn-primary" id="btn-to-step-2">Continue to Flipped Interview &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 2: The Flipped Interview -->
+        <div id="step-2" class="step-content hidden">
+          <div class="step-header">
+            <h2>Step 2: The Flipped Interaction Interview</h2>
+            <p class="description">Answer these 3 questions to extract your specific vision and prevent the AI from defaulting to generic templates.</p>
+          </div>
+
+          <div class="interview-card">
+            <div class="question-header">
+              <span class="q-badge">Question 1 of 3</span>
+              <h3>Target Persona & Real Human Context</h3>
+            </div>
+            <p class="q-prompt">Who specifically is sitting at their screen using this in the demo, and what moment triggers them to open it?</p>
+            <textarea id="q-persona" rows="2" placeholder="e.g., A tired junior developer debugging an obscure Python stack trace at 11 PM before a production release.">A solo developer stuck debugging an unexpected error log while building their first hackathon app.</textarea>
+          </div>
+
+          <div class="interview-card">
+            <div class="question-header">
+              <span class="q-badge">Question 2 of 3</span>
+              <h3>The Single-Action Core Loop</h3>
+            </div>
+            <p class="q-prompt">Break down the exact sequence of the single user action: Input &rarr; Transformation &rarr; Output.</p>
+            <div class="loop-grid">
+              <div>
+                <label class="sub-label">1. User Inputs:</label>
+                <input type="text" id="loop-input" value="Pastes a cryptic error message or stack trace.">
+              </div>
+              <div>
+                <label class="sub-label">2. App Transforms:</label>
+                <input type="text" id="loop-process" value="Extracts error type, strips noise, identifies failing line.">
+              </div>
+              <div>
+                <label class="sub-label">3. User Receives:</label>
+                <input type="text" id="loop-output" value="A 2-sentence plain-English explanation + verified copyable fix.">
+              </div>
+            </div>
+          </div>
+
+          <div class="interview-card">
+            <div class="question-header">
+              <span class="q-badge">Question 3 of 3</span>
+              <h3>Anti-Generic Visual Style</h3>
+            </div>
+            <p class="q-prompt">Which visual personality matches your project to ensure it doesn't look like boilerplate AI?</p>
+            <div class="theme-pills" id="theme-picker">
+              <button type="button" class="theme-pill active" data-theme="editorial">Warm Editorial</button>
+              <button type="button" class="theme-pill" data-theme="cyberpunk">Cyberpunk Neon</button>
+              <button type="button" class="theme-pill" data-theme="nordic">Nordic Clean</button>
+              <button type="button" class="theme-pill" data-theme="terminal">Retro Terminal</button>
+            </div>
+          </div>
+
+          <div class="step-footer split-buttons">
+            <button class="btn-secondary" id="btn-back-to-1">&larr; Back</button>
+            <button class="btn-primary" id="btn-to-step-3">Lock Intent & Analyze Debt &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Triage & Cognitive Debt Radar -->
+        <div id="step-3" class="step-content hidden">
+          <div class="step-header">
+            <h2>Step 3: Scope Guardrails & Cognitive Debt</h2>
+            <p class="description">Drag or click to move features between "Now" and "Later". Keep cognitive debt low so you actually ship today!</p>
+          </div>
+
+          <!-- Cognitive Debt Gauge Bar -->
+          <div class="debt-meter-card">
+            <div class="meter-header">
+              <div>
+                <span class="meter-title">Cognitive Debt Score</span>
+                <span id="debt-status-text" class="status-pill status-good">Healthy PoC (25%)</span>
+              </div>
+              <span class="meter-score" id="debt-score-value">25%</span>
+            </div>
+            <div class="meter-bar-track">
+              <div class="meter-bar-fill" id="debt-bar-fill" style="width: 25%;"></div>
+            </div>
+            <p class="meter-tip" id="debt-tip">Clean single-action loop. You can comfortably build, test, and ship this in an afternoon!</p>
+          </div>
+
+          <!-- Dynamic Anti-Pattern Warnings -->
+          <div id="anti-pattern-alerts" class="alert-box-container hidden">
+            <!-- Injected dynamically -->
+          </div>
+
+          <!-- Triage Board (Now vs Later) -->
+          <div class="triage-board">
+            <div class="triage-column now-col">
+              <div class="col-header">
+                <h3>Now (Afternoon PoC)</h3>
+                <span class="col-count" id="count-now">3 items</span>
+              </div>
+              <p class="col-sub">Must exist in your demo video to prove the kernel.</p>
+              <ul class="feature-list" id="list-now">
+                <!-- Features rendered by JS -->
+              </ul>
+            </div>
+
+            <div class="triage-column later-col">
+              <div class="col-header">
+                <h3>Later (v2 Roadmap)</h3>
+                <span class="col-count" id="count-later">3 items</span>
+              </div>
+              <p class="col-sub">Cut from the afternoon build to avoid amnesia & broken code.</p>
+              <ul class="feature-list" id="list-later">
+                <!-- Features rendered by JS -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-footer split-buttons">
+            <button class="btn-secondary" id="btn-back-to-2">&larr; Back</button>
+            <button class="btn-primary" id="btn-to-step-4">Review Specs & Export &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Export Planning Docs -->
+        <div id="step-4" class="step-content hidden">
+          <div class="step-header">
+            <h2>Step 4: Devpost-Ready Planning Docs</h2>
+            <p class="description">Your planning files are generated and ready for your Git repository. Copy directly or download!</p>
+          </div>
+
+          <div class="export-tabs">
+            <button class="export-tab active" data-doc="scope">scope.md</button>
+            <button class="export-tab" data-doc="prd">prd.md</button>
+            <button class="export-tab" data-doc="spec">spec.md</button>
+          </div>
+
+          <div class="doc-preview-wrapper">
+            <div class="doc-preview-header">
+              <span id="doc-filename" class="doc-tag">devpost/scope.md</span>
+              <button id="btn-copy-doc" class="btn-secondary btn-xs">Copy Markdown</button>
+            </div>
+            <pre class="doc-code"><code id="doc-content-area">Loading document...</code></pre>
+          </div>
+
+          <div class="export-actions">
+            <button id="btn-download-all" class="btn-primary">Download All Planning Files (.md)</button>
+            <button id="btn-view-app-map" class="btn-secondary">Open Visual App Map</button>
+          </div>
+
+          <div class="step-footer">
+            <button class="btn-secondary" id="btn-back-to-3">&larr; Back to Triage</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Live Interactive Prototype Visualizer -->
+      <section class="panel-right">
+        <div class="preview-device">
+          <!-- Device Header -->
+          <div class="device-toolbar">
+            <div class="device-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="device-url-bar">
+              <span class="url-protocol">https://</span>
+              <span id="preview-url">localhost:3000/app</span>
+            </div>
+            <span class="device-badge">Live PoC Simulator</span>
+          </div>
+
+          <!-- Simulated App Canvas -->
+          <div class="device-screen" id="simulated-app-screen">
+            <!-- Top App Bar of the Prototype -->
+            <div class="sim-header">
+              <div class="sim-brand">
+                <span class="sim-logo-icon">&bull;</span>
+                <span id="sim-app-name">SnippetRefine</span>
+              </div>
+              <span class="sim-category-badge" id="sim-category">DevTools</span>
+            </div>
+
+            <!-- Pitch Banner -->
+            <div class="sim-hero">
+              <h3 id="sim-tagline">Instantly turns convoluted error tracebacks into plain-English root causes with one-click fixes.</h3>
+              <p class="sim-user-quote" id="sim-persona-quote">Designed for: A solo developer stuck debugging an unexpected error log while building their first hackathon app.</p>
+            </div>
+
+            <!-- Interactive Core Loop Sandbox -->
+            <div class="sim-card">
+              <label class="sim-label" id="sim-input-label">Input Stack Trace / Cryptic Log:</label>
+              <textarea id="sim-input-text" rows="3" class="sim-input" placeholder="Paste your raw input here to test the loop..."></textarea>
+              
+              <div class="sim-btn-row">
+                <button id="btn-sim-run" class="btn-sim-action">
+                  <span id="sim-btn-text">Execute Core Transformation</span>
+                  <span id="sim-spinner" class="spinner hidden"></span>
+                </button>
+                <button id="btn-sim-sample" class="btn-sim-secondary">Insert Sample</button>
+              </div>
+
+              <!-- Output Container -->
+              <div id="sim-output-box" class="sim-output-box hidden">
+                <div class="output-header">
+                  <span class="output-tag">&check; Core Loop Result</span>
+                  <span class="output-time">Processed in 18ms</span>
+                </div>
+                <div id="sim-output-content" class="output-content">
+                  <!-- Dynamic transformation result -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Feature Checklist Pillbox -->
+            <div class="sim-features-footer">
+              <span class="features-label">Verified PoC Features (Now):</span>
+              <div class="active-features-chips" id="sim-feature-chips">
+                <!-- Dynamically rendered pills -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden">Document copied to clipboard!</div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
